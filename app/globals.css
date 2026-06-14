@@ -1,0 +1,509 @@
+:root {
+  /* Aged-paper & ink palette */
+  --paper: #f3e9d2;
+  --paper-deep: #ead9b8;
+  --paper-edge: #e2d3ae;
+  --ink: #2b2522;
+  --ink-soft: #5a4f45;
+  --rule: #c9b894;
+
+  /* Retro accents */
+  --rust: #b5482f;
+  --rust-deep: #8f3322;
+  --mustard: #d99a2b;
+  --teal: #2f6f6a;
+  --plum: #7a3b52;
+
+  --shadow: rgba(43, 37, 34, 0.18);
+
+  --font-display: Georgia, serif;
+  --font-body: Georgia, serif;
+  --font-type: "Courier New", monospace;
+  --font-label: Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--paper);
+  /* Layered paper grain + halftone freckles */
+  background-image:
+    radial-gradient(var(--paper-edge) 1px, transparent 1px),
+    radial-gradient(rgba(43, 37, 34, 0.04) 1px, transparent 1px);
+  background-size: 6px 6px, 22px 22px;
+  background-position: 0 0, 3px 3px;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Shared typographic helpers ===== */
+.display {
+  font-family: var(--font-display);
+}
+.label {
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+}
+.type {
+  font-family: var(--font-type);
+}
+
+/* ===== Page shell ===== */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 18px 48px;
+}
+
+.sheet {
+  width: 100%;
+  max-width: 860px;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  box-shadow: 10px 12px 0 var(--shadow);
+  position: relative;
+}
+
+/* ===== Masthead ===== */
+.masthead {
+  border-bottom: 4px double var(--ink);
+  padding: 18px 26px 14px;
+}
+
+.masthead-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.masthead-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-align: center;
+  font-size: clamp(40px, 9vw, 78px);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  margin: 6px 0;
+}
+
+.masthead-title .amp {
+  color: var(--rust);
+  font-style: italic;
+}
+
+.masthead-sub {
+  text-align: center;
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.34em;
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+}
+
+/* ===== Column header for the advice section ===== */
+.column-head {
+  padding: 20px 26px 0;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.column-kicker {
+  background: var(--rust);
+  color: var(--paper);
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  transform: rotate(-1.5deg);
+}
+
+.column-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(22px, 4.5vw, 32px);
+}
+
+.column-note {
+  padding: 6px 26px 18px;
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 15px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ===== Chat transcript ===== */
+.transcript {
+  padding: 22px 26px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-height: 240px;
+}
+
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 90%;
+}
+
+.entry-from-user {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+.entry-from-bot {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+.entry-byline {
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.bubble {
+  padding: 14px 16px;
+  position: relative;
+  font-size: 16.5px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Reader's letter — looks like a clipped, typed note */
+.entry-from-user .bubble {
+  background: var(--paper-deep);
+  border: 1px solid var(--ink);
+  font-family: var(--font-type);
+  font-size: 15px;
+  box-shadow: 3px 3px 0 var(--shadow);
+  border-radius: 1px;
+}
+
+/* Columnist reply — set like magazine prose */
+.entry-from-bot .bubble {
+  background: var(--paper);
+  border-left: 4px solid var(--rust);
+  padding-left: 18px;
+  font-family: var(--font-body);
+}
+
+.entry-from-bot .bubble::first-letter {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 2.6em;
+  line-height: 0.7;
+  float: left;
+  padding: 6px 8px 0 0;
+  color: var(--rust);
+}
+
+/* typing indicator */
+.typing {
+  display: inline-flex;
+  gap: 5px;
+  padding: 4px 2px;
+}
+.typing span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ink-soft);
+  animation: blink 1.2s infinite ease-in-out both;
+}
+.typing span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+@keyframes blink {
+  0%,
+  80%,
+  100% {
+    opacity: 0.2;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--ink-soft);
+  font-style: italic;
+  padding: 40px 10px;
+  font-size: 17px;
+}
+.empty-state .ornament {
+  font-family: var(--font-display);
+  font-size: 30px;
+  color: var(--rust);
+  margin-bottom: 8px;
+}
+
+/* ===== Composer ===== */
+.composer {
+  border-top: 2px solid var(--ink);
+  padding: 16px 26px 20px;
+  background: var(--paper-deep);
+}
+
+.composer-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.composer textarea {
+  flex: 1;
+  resize: none;
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  font-family: var(--font-type);
+  font-size: 15px;
+  line-height: 1.5;
+  padding: 12px 14px;
+  color: var(--ink);
+  box-shadow: inset 2px 2px 0 rgba(43, 37, 34, 0.06);
+  border-radius: 1px;
+}
+.composer textarea:focus {
+  outline: none;
+  border-color: var(--rust);
+}
+
+.btn {
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  border: 1.5px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  padding: 13px 20px;
+  box-shadow: 3px 3px 0 var(--shadow);
+  transition: transform 0.05s ease, box-shadow 0.05s ease;
+  border-radius: 1px;
+}
+.btn:hover:not(:disabled) {
+  background: var(--rust);
+  border-color: var(--rust-deep);
+}
+.btn:active:not(:disabled) {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--shadow);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+}
+.btn-ghost:hover:not(:disabled) {
+  background: var(--paper);
+  color: var(--rust);
+}
+
+.composer-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 10px;
+  color: var(--ink-soft);
+}
+.composer-meta a,
+.linklike {
+  color: var(--rust);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  padding: 0;
+}
+.linklike:hover {
+  text-decoration: underline;
+}
+
+.error-strip {
+  background: var(--rust);
+  color: var(--paper);
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 8px 26px;
+  text-align: center;
+}
+
+/* ===== Footer ===== */
+.colophon {
+  max-width: 860px;
+  width: 100%;
+  text-align: center;
+  margin-top: 18px;
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 10px;
+  color: var(--ink-soft);
+  line-height: 1.8;
+}
+.colophon .crisis {
+  color: var(--rust-deep);
+  font-weight: 700;
+}
+
+/* ===== API-key gate (overlay) ===== */
+.gate {
+  position: fixed;
+  inset: 0;
+  background: rgba(43, 37, 34, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 50;
+}
+
+.gate-card {
+  width: 100%;
+  max-width: 460px;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  box-shadow: 10px 12px 0 rgba(43, 37, 34, 0.4);
+  background-image: radial-gradient(var(--paper-edge) 1px, transparent 1px);
+  background-size: 6px 6px;
+}
+
+.gate-head {
+  border-bottom: 4px double var(--ink);
+  padding: 18px 24px 14px;
+  text-align: center;
+}
+.gate-stamp {
+  display: inline-block;
+  border: 2px solid var(--rust);
+  color: var(--rust);
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  transform: rotate(-3deg);
+  margin-bottom: 12px;
+}
+.gate-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 1;
+}
+.gate-body {
+  padding: 20px 24px 24px;
+}
+.gate-body p {
+  margin: 0 0 16px;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+.gate-body label {
+  display: block;
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.gate-body input {
+  width: 100%;
+  border: 1.5px solid var(--ink);
+  background: var(--paper-deep);
+  font-family: var(--font-type);
+  font-size: 15px;
+  padding: 12px 14px;
+  color: var(--ink);
+  border-radius: 1px;
+}
+.gate-body input:focus {
+  outline: none;
+  border-color: var(--rust);
+}
+.gate-actions {
+  margin-top: 18px;
+  display: flex;
+  gap: 10px;
+}
+.gate-fine {
+  margin-top: 16px;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+@media (max-width: 560px) {
+  .masthead-top {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
+  .entry {
+    max-width: 100%;
+  }
+  .transcript,
+  .composer,
+  .column-head,
+  .column-note {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
