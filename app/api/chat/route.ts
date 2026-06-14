@@ -67,7 +67,7 @@ export async function POST(req: NextRequest) {
           ...messages.map((m) => ({ role: m.role, content: m.content })),
         ],
         temperature: 0.8,
-        max_tokens: 700,
+        max_completion_tokens: 700,
       }),
     });
 
